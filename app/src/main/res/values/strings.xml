@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">MofoEOYTotalizerWidget</string>
     <string name="eoy_total">0</string>
+    <string name="mofo_totalizer_text">EOY Total:</string>
 </resources>

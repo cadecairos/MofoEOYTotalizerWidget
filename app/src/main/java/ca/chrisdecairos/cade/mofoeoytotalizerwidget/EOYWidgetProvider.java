@@ -27,7 +27,7 @@ public class EOYWidgetProvider extends AppWidgetProvider {
     public void onUpdate(final Context context, final AppWidgetManager appWidgetManager, final int[] appWidgetIds) {
         RequestQueue queue = Volley.newRequestQueue(context);
         String url = "https://d3gxuc3bq48qfa.cloudfront.net/eoy-2014-total";
-        final DecimalFormat df = new DecimalFormat("#.##");
+        final DecimalFormat df = new DecimalFormat("#,###.##");
         df.setRoundingMode(RoundingMode.FLOOR);
 
         JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, url, null,
