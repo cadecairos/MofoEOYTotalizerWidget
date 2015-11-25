@@ -17,6 +17,9 @@ package ca.chrisdecairos.cade.mofoeoytotalizerwidget;
         import org.json.JSONException;
         import org.json.JSONObject;
 
+        import java.math.RoundingMode;
+        import java.text.DecimalFormat;
+
 
 public class EOYWidgetProvider extends AppWidgetProvider {
 
@@ -24,13 +27,15 @@ public class EOYWidgetProvider extends AppWidgetProvider {
     public void onUpdate(final Context context, final AppWidgetManager appWidgetManager, final int[] appWidgetIds) {
         RequestQueue queue = Volley.newRequestQueue(context);
         String url = "https://d3gxuc3bq48qfa.cloudfront.net/eoy-2014-total";
+        final DecimalFormat df = new DecimalFormat("#.##");
+        df.setRoundingMode(RoundingMode.FLOOR);
 
         JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, url, null,
             new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
                     try {
-                        setText(context, appWidgetManager, appWidgetIds, "$" + Double.toString(response.getDouble("sum")));
+                        setText(context, appWidgetManager, appWidgetIds, "$" + df.format(response.getDouble("sum")));
                     } catch (JSONException je) {
                         setText(context, appWidgetManager, appWidgetIds, ":(");
                     }
