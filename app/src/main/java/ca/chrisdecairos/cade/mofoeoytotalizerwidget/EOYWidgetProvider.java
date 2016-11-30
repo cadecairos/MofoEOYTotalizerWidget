@@ -20,15 +20,17 @@ package ca.chrisdecairos.cade.mofoeoytotalizerwidget;
         import java.math.RoundingMode;
         import java.text.DecimalFormat;
 
+        import static java.math.RoundingMode.FLOOR;
+
 
 public class EOYWidgetProvider extends AppWidgetProvider {
 
     @Override
     public void onUpdate(final Context context, final AppWidgetManager appWidgetManager, final int[] appWidgetIds) {
         RequestQueue queue = Volley.newRequestQueue(context);
-        String url = "https://d3gxuc3bq48qfa.cloudfront.net/eoy-2014-total";
+        String url = "https://transaction-storage.mofoprod.net/eoy-2016-total";
         final DecimalFormat df = new DecimalFormat("#,###.##");
-        df.setRoundingMode(RoundingMode.FLOOR);
+        df.setRoundingMode(FLOOR);
 
         JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, url, null,
             new Response.Listener<JSONObject>() {
